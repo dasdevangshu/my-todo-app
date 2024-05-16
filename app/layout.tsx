@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
+import Navbar from "./components/Navbar";
+import Provider from "./components/Provider";
 
-const inter = Inter({ subsets: ["latin"] });
+//const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +19,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+
+      <body className={quicksand.className + ' h-screen flex flex-col'}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Provider>
+            <Navbar />
+            <div className=" overflow-y-scroll grow bg-slate-700 dark:bg-slate-900">
+              {children}
+            </div>
+          </Provider>
+        </ThemeProvider>
+      </body>
+
     </html>
   );
 }
