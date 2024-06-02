@@ -25,7 +25,10 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = global._mongoClientPromise
 } else {
   client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+  clientPromise = client.connect().catch(err => {
+    console.error('Failed to connect to MongoDB in production mode:', err);
+    throw err;
+  });
 }
 
 export default clientPromise
