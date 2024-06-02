@@ -143,6 +143,8 @@ export default function GuestList() {
       color: 'rose'
     }])
     setTaskData([])
+    setCurName('New List')
+    setTempName('New List')
   }
 
 
