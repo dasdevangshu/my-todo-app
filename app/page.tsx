@@ -13,9 +13,9 @@ export default async function Home() {
       <div className=" dark:bg-slate-800 dark:outline dark:outline-rose-500 bg-rose-500 shadow-md rounded-md w-4/5 max-w-5xl mt-12 md:mt-24 p-8 gap-2 flex flex-col items-center">
         <LogoHeader />
         <p className={pStyle}>Looks like you&apos;re not signed in. Want to make the most of WhatToDo? Just log in to keep your to-do lists safe and sound.</p>
-        <Link href='/signin'><button className={buttonStyle}>Sign In</button></Link>
+        <Link href='/signin'><button className={buttonStyle}>SignIn</button></Link>
         <p className={pStyle}>Don&apos;t have an account yet? No worries, you can sign up right here.</p>
-        <Link href='/signup'><button className={buttonStyle}>Sign Up</button></Link>
+        <Link href='/signup'><button className={buttonStyle}>SignUp</button></Link>
         <p className={pStyle}>Oh, and if you&apos;re in a hurry, you can give guest mode a shot. Just remember, any lists you whip up won&apos;t stick around once you leave.</p>
         <Link href='/guest-mode'><button className={buttonStyle}>Guest Mode</button></Link>
       </div>
