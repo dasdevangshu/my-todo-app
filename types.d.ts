@@ -13,6 +13,12 @@ declare global {
     color: string
   };
 
+  type GuestListType = {
+    listId: string,
+    listName: string,
+    color: string
+  };
+
   type TaskType = {
     _id: string,
     listId: string,
@@ -20,7 +26,11 @@ declare global {
     task: string,
     isDone: boolean
   };
+
+  type GuestTaskType = {
+    listId: string,
+    taskId: string,
+    task: string,
+    isDone: boolean
+  };
 }
-
-
-

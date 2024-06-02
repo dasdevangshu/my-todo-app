@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
 import Title from "./Title";
+import Link from "next/link";
 
 const bg300 = {
   rose: 'bg-rose-300 ',
@@ -66,8 +67,6 @@ const caret500 = {
   emerald: 'dark:caret-emerald-500 ',
 }
 
-
-
 export default function List(props: any) {
 
   const listData: Array<ListType> = props.listData
@@ -76,7 +75,7 @@ export default function List(props: any) {
   const [curInd, setCurInd] = useState(0)
   const curList = listData[curInd]
 
-  const [isAdded, setIsState] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   function findIni(str: string) {
     const words = str.trim().split(' ')
@@ -87,7 +86,7 @@ export default function List(props: any) {
   const AddList: Function = props.AddList
   async function HandleAddList() {
     await AddList()
-    setIsState(true)
+    setIsAdded(true)
   }
 
   const AddTask: Function = props.AddTask
@@ -97,7 +96,7 @@ export default function List(props: any) {
   const RemoveList: Function = props.RemoveList
   function HandleRemoveList(id: string) {
     RemoveList(id)
-    setCurInd((prev) => listData.findIndex((i) => i._id === id) === 0 ? 0 : listData.findIndex((i) => i._id === id) <= prev ? prev - 1 : prev)
+    setCurInd((prev) => listData.findIndex((i) => i._id === id) === 0 ? prev===0?0 : prev-1 : listData.findIndex((i) => i._id === id) <= prev ? prev - 1 : prev)
   }
 
   const ResetOneList: Function = props.ResetOneList
@@ -127,11 +126,16 @@ export default function List(props: any) {
     <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </svg>
 
+  const backIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"hover:scale-110 hover:stroke-slate-100 ease-in-out duration-300 w-6 h-6 stroke-slate-300 " + stroke500[curList.color as keyof typeof stroke500]}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+  </svg>
+
+
   //sets the curList to the newest listData item
   useEffect(() => {
     if (isAdded) {
       setCurInd(listData.length - 1)
-      setIsState(false)
+      setIsAdded(false)
     }
   }, [listData.length])
 
@@ -147,7 +151,6 @@ export default function List(props: any) {
     const outline = isSelected ? 'dark:outline outline ' : 'dark:outline dark:outline-2 hover:outline hover:dark:outline-4 '
     const outlineColor = isSelected ? outline500[item.color as keyof typeof outline500] : outline400[item.color as keyof typeof outline400]
     const color = ('dark:bg-slate-800 ' + bg500[item.color as keyof typeof bg500])
-    // const outline = outline400[item.color as keyof typeof outline400]
 
     return <div onClick={() => { changeCurList(item._id) }} className={"shrink-0 ease-in-out duration-300 shadow-md cursor-pointer rounded-full size-12 flex justify-center items-center select-none relative " + enlarge + color + outline + outlineColor} key={item._id}>
       {findIni(item.listName)}
@@ -175,12 +178,15 @@ export default function List(props: any) {
 
       <div className=" flex-none overflow-y-auto overflow-x-hidden flex flex-col gap-2 p-4 pl-5 pr-4">
         {listChanger}
-        <button className="hover:outline ease-in-out duration-300 scale-90 shrink-0 shadow-md rounded-full size-12 dark:bg-slate-600 bg-slate-500 flex justify-center items-center" onClick={() => { HandleAddList(); console.log(listData) }}>{plusIcon2}</button>
+        <button className="hover:outline ease-in-out duration-300 scale-90 shrink-0 shadow-md rounded-full size-12 dark:bg-slate-600 bg-slate-500 flex justify-center items-center" onClick={() => HandleAddList()}>{plusIcon2}</button>
       </div>
 
       <div className="flex flex-col flex-grow p-2 gap-2">
 
-        <div className="flex items-center justify-center mb-0.5">
+        <div className="flex items-center justify-center mb-0.5 relative">
+          <Link href='/'><div className="absolute top-0 left-1">
+            {backIcon}
+          </div></Link>
           <button className="flex gap-2 dark:text-slate-300" onClick={() => { HandleReset() }}>{resetIcon}Reset all lists</button>
         </div>
 
@@ -195,31 +201,4 @@ export default function List(props: any) {
       </div>
     </div>
   )
-
-  // return (
-  //   <div className="flex flex-col p-2 h-full">
-
-  //     <div className="flex items-center justify-center mb-0.5">
-  //       <button className="flex gap-2 dark:text-slate-300" onClick={() => { HandleReset() }}>{resetIcon}Reset all lists</button>
-  //     </div>
-
-  //     <div className="flex-1 p-2 overflow-hidden flex gap-2 flex-row w-full">
-  //       <div className="overflow-y-auto overflow-x-hidden flex flex-col gap-2 pl-2 pr-6 py-4">
-
-  //         {listChanger}
-  //         <button className="hover:outline ease-in-out duration-300 scale-90 shrink-0 shadow-md rounded-full size-12 dark:bg-slate-600 bg-slate-500 flex justify-center items-center" onClick={() => { HandleAddList(); console.log(listData) }}>{plusIcon2}</button>
-
-  //       </div>
-
-  //       <div className={'overflow-auto dark:outline dark:bg-slate-800 flex flex-col gap-1 w-full rounded-md shadow-md p-2 ' + bg500[curList.color as keyof typeof bg500] + outline500[curList.color as keyof typeof outline500]} >
-  //         {header}
-  //         {curTasks}
-  //         <div>
-  //           <button onClick={() => AddTask(curList._id)}>{plusIcon}</button>
-  //         </div>
-  //       </div>
-
-  //     </div>
-  //   </div>
-  // )
 }

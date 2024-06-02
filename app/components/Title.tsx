@@ -1,26 +1,12 @@
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-// const bg300 = {
-//     rose: 'bg-rose-300 ',
-//     amber: 'bg-amber-300 ',
-//     indigo: 'bg-indigo-300 ',
-//     emerald: 'bg-emerald-300 ',
-// }
-
 const stroke500 = {
     rose: 'dark:hover:stroke-rose-500 ',
     amber: 'dark:hover:stroke-amber-500 ',
     indigo: 'dark:hover:stroke-indigo-500 ',
     emerald: 'dark:hover:stroke-emerald-500 ',
 }
-
-// const bg400 = {
-//     rose: 'bg-rose-400 ',
-//     amber: 'bg-amber-400 ',
-//     indigo: 'bg-indigo-400 ',
-//     emerald: 'bg-emerald-400 ',
-// }
 
 const text500 = {
     rose: 'text-slate-100 dark:text-rose-500 ',
@@ -51,7 +37,6 @@ const caret500 = {
 }
 
 export default function Title(props: any) {
-
     const [curName, setName] = useState(props.name)
     const UpdateTitle: Function = props.UpdateTitle
     const listId: string = props.listId

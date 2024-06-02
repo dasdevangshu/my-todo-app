@@ -12,7 +12,7 @@ import { Reset } from '@/lib/reset';
 import { UpdateTitle } from '@/lib/updateTitle';
 import { ChangeListColor } from '@/lib/changeListColor';
 import { ResetOneList } from '@/lib/resetOneList';
-import { encryptMessage, decryptMessage } from '@/lib/encryption';
+import { decryptMessage } from '@/lib/encryption';
 
 export default async function Lists() {
     const session = await auth();
@@ -27,11 +27,11 @@ export default async function Lists() {
 
     const listsData = await GetLists(userId as string);
     const regularListsData: Array<ListType> = JSON.parse(JSON.stringify(listsData));
-    const finListData: Array<ListType> = regularListsData.map((i: ListType) => toEncrpt === 'true'? {...i, listName: decryptMessage(i.listName) }: i )
+    const finListData: Array<ListType> = regularListsData.map((i: ListType) => toEncrpt === 'true' ? { ...i, listName: decryptMessage(i.listName) } : i)
 
     const taskData = await GetAllTasks()
     const regularTasksData: Array<TaskType> = JSON.parse(JSON.stringify(taskData));
-    const finTaskData: Array<TaskType> = regularTasksData.map((i: TaskType) => toEncrpt === 'true'? {...i, task: decryptMessage(i.task) }: i )
+    const finTaskData: Array<TaskType> = regularTasksData.map((i: TaskType) => toEncrpt === 'true' ? { ...i, task: decryptMessage(i.task) } : i)
 
     async function AddListClient() {
         'use server'
@@ -77,7 +77,7 @@ export default async function Lists() {
 
     async function ResetClient() {
         'use server'
-        Reset()
+        await Reset(userId as string)
         revalidatePath('/lists')
     }
 
@@ -88,19 +88,17 @@ export default async function Lists() {
     }
 
     return (
-        // <div className='h-full w-full'>
-            <List
-                listData={finListData}
-                taskData={finTaskData}
-                AddList={AddListClient}
-                AddTask={AddTaskClient}
-                UpdateTask={UpdateTaskClient}
-                RemoveTask={RemoveTaskClient}
-                RemoveList={RemoveListClient}
-                ResetOneList={ResetOneListClient}
-                Reset={ResetClient}
-                UpdateTitle={UpdateTitleClient}
-                ChangeListColor={ChangeListColorClient} />
-        // </div>
+        <List
+            listData={finListData}
+            taskData={finTaskData}
+            AddList={AddListClient}
+            AddTask={AddTaskClient}
+            UpdateTask={UpdateTaskClient}
+            RemoveTask={RemoveTaskClient}
+            RemoveList={RemoveListClient}
+            ResetOneList={ResetOneListClient}
+            Reset={ResetClient}
+            UpdateTitle={UpdateTitleClient}
+            ChangeListColor={ChangeListColorClient} />
     )
 }

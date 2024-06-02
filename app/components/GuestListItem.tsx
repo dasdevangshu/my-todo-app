@@ -51,7 +51,7 @@ const stroke500 = {
   emerald: 'dark:hover:stroke-emerald-500 ',
 }
 
-export default function ListItem(props: any) {
+export default function GuestListItem(props: any) {
   const taskData: TaskType = props.data
   const color: string = props.color
   const UpdateTask: Function = props.UpdateTask
@@ -77,11 +77,11 @@ export default function ListItem(props: any) {
       <div className='w-full flex items-center gap-1'>
         <input type='checkbox' className={accent400[color as keyof typeof accent400]} onChange={(e) => {setCurIsDone(e.target.checked); UpdateTask(taskData._id, curTaskData, e.target.checked)}}></input>
         <TextareaAutosize spellCheck="false" className={" focus:outline dark:bg-slate-900 dark:placeholder:text-slate-600 text-slate-100 rounded-md lg:w-8/12 w-11/12 px-2 resize-none " + isUnderline + accent400[color as keyof typeof accent400] + caret400[color as keyof typeof caret400] + outline500[color as keyof typeof outline500] + bg600[color as keyof typeof bg600] + placeholder400[color as keyof typeof placeholder400]} placeholder='add a task...' value={curTaskData} onChange={(e) => setCurTaskData(e.target.value)} />
-        <button className=' ' onClick={() => RemoveTask(taskData._id)}>{trashIcon}</button>
+        <button className=' ' onClick={() => RemoveTask(taskData.taskId)}>{trashIcon}</button>
       </div>
 
       {(taskData.task !== curTaskData) && <div className='flex '>
-        <button className='mt-1' onClick={() => UpdateTask(taskData._id, curTaskData, curIsDone)}>{tickIcon}</button>
+        <button className='mt-1' onClick={() => UpdateTask(taskData.taskId, curTaskData, curIsDone)}>{tickIcon}</button>
         <button className='mt-1' onClick={() => setCurTaskData(taskData.task)}>{crossIcon}</button>
       </div>}
     </div>
