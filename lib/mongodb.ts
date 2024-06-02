@@ -12,6 +12,9 @@ const options = {
     strict: true,
     deprecationErrors: true,
   },
+  connectTimeoutMS: 60000, // Increase the timeout to 60 seconds
+  socketTimeoutMS: 60000,
+  minPoolSize: 3,
 }
 
 let client
