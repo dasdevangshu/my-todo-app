@@ -31,9 +31,9 @@ export default function SignUpPage() {
                 <input className={inputStyle} value={username} type="text" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)}></input>
                 <input className={inputStyle} value={password} type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></input>
                 <button className={buttonStyle} disabled={toDisable} onClick={() => AddUser(username, password)}>SignUp</button>
-                <button className={buttonStyle} onClick={() => signIn('github')}>Sign Up using Github</button>
+                <button className={buttonStyle} onClick={() => signIn('github')}>SignUp using Github</button>
                 <p className={pStyle}>Already have an account?</p>
-                <Link className="w-full flex justify-center" href='/signin'><button className={buttonStyle}>Sign In</button></Link>
+                <Link className="w-full flex justify-center" href='/signin'><button className={buttonStyle}>SignIn</button></Link>
             </div>
         </main>)
 }
