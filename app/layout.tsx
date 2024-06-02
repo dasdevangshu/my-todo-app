@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
 
-      <body className={quicksand.className + ' h-screen flex flex-col'}>
+      <body className={quicksand.className + ' h-dvh flex flex-col'}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
