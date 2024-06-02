@@ -30,7 +30,7 @@ export default function SignInPage() {
         <input className={inputStyle} value={password} type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></input>
         <button className={buttonStyle} disabled={toDisable} onClick={() => { signIn('credentials', { username: username, password: password }) }}>SignIn</button>
         <button className={buttonStyle} onClick={() => signIn('github')}>SignIn using Github</button>
-        <p className={pStyle}>Don't have an account?</p>
+        <p className={pStyle}>Don&apos;t have an account?</p>
         <Link className="w-full flex justify-center" href='/signup'><button className={buttonStyle}>SignUp</button></Link>
       </div>
     </main>

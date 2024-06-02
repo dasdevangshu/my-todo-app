@@ -15,7 +15,7 @@ export default async function GuestLists() {
         return (<main className=" flex justify-center">
         <div className=" dark:bg-slate-800 dark:outline dark:outline-rose-500 bg-rose-500 shadow-md rounded-md w-4/5 max-w-5xl mt-12 md:mt-24 p-8 gap-2 flex flex-col items-center">
           <LogoHeader />
-          <p className={pStyle}>It looks like you're already logged in. Your lists have been saved. Open your lists to start using WhatToDo!</p>
+          <p className={pStyle}>It looks like you&apos;re already logged in. Your lists have been saved. Open your lists to start using WhatToDo!</p>
           <Link href='/lists'><button className={buttonStyle}>Lists</button></Link>
         </div>
       </main>)
