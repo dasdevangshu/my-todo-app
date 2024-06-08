@@ -19,7 +19,7 @@ export default function SignUpPage() {
     const pStyle = 'w-4/5 md:w-2/5 text-slate-100 text-center text-md'
     const alertStyle = 'w-4/5 md:w-2/5 font-bold text-slate-100 text-center text-md animate-pulse'
     const buttonStyle = 'w-4/5 md:w-2/5 font-bold border-2 text-slate-100 border-slate-100 dark:border-rose-500 dark:hover:bg-rose-500 dark:hover:text-slate-100 rounded-md p-2 hover:bg-slate-100 hover:text-rose-500 transition duration-300'
-    const inputStyle = 'w-4/5 md:w-2/5 text-rose-500 dark:text-slate-100 bg-slate-100 px-2 accent-slate-100 dark:accent-rose-500 placeholder:text-rose-400 caret-rose-400 focus:outline focus:outline-offset-2 dark:bg-slate-900 dark:placeholder:text-slate-600 text-slate-100 rounded-md focus:outline-slate-100 dark:focus:outline-rose-500 '
+    const inputStyle = 'p-1 w-4/5 md:w-2/5 text-rose-500 dark:text-slate-100 bg-slate-100 px-2 accent-slate-100 dark:accent-rose-500 placeholder:text-rose-400 caret-rose-400 focus:outline focus:outline-offset-2 dark:bg-slate-900 dark:placeholder:text-slate-600 rounded-md focus:outline-slate-100 dark:focus:outline-rose-500 '
 
 
     return (
@@ -33,7 +33,7 @@ export default function SignUpPage() {
                 <button className={buttonStyle} disabled={toDisable} onClick={() => AddUser(username, password)}>SignUp</button>
                 <button className={buttonStyle} onClick={() => signIn('github')}>SignUp using Github</button>
                 <p className={pStyle}>Already have an account?</p>
-                <Link className="w-full flex justify-center" href='/signin'><button className={buttonStyle}>SignIn</button></Link>
+                <Link className="w-full flex justify-center" href='/signin'><button className={buttonStyle}>Go to SignIn</button></Link>
             </div>
         </main>)
 }

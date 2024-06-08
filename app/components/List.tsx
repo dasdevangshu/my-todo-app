@@ -190,7 +190,7 @@ export default function List(props: any) {
           <button className="flex gap-2 dark:text-slate-300" onClick={() => { HandleReset() }}>{resetIcon}Reset all lists</button>
         </div>
 
-        <div className={'flex-1 overflow-auto dark:outline dark:bg-slate-800 flex flex-col gap-1 w-full rounded-md shadow-md p-2 ' + bg500[curList.color as keyof typeof bg500] + outline500[curList.color as keyof typeof outline500]} >
+        <div className={'flex-1 overflow-auto dark:outline dark:bg-slate-800 flex flex-col gap-1 w-full rounded-md shadow-md p-4 ' + bg500[curList.color as keyof typeof bg500] + outline500[curList.color as keyof typeof outline500]} >
           {header}
           {curTasks}
           <div>

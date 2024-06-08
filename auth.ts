@@ -11,8 +11,6 @@ class InvalidLoginError extends CredentialsSignin {
     code = "Invalid Username or Password"
   }
 
-console.log(clientPromise)
-
 const providers : Provider[] = [
     GitHub({ clientId: process.env.GITHUB_CLIENT_ID, clientSecret: process.env.GITHUB_CLIENT_SECRET }),
     Credentials({

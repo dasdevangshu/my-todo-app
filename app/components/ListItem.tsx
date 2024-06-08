@@ -75,7 +75,7 @@ export default function ListItem(props: any) {
   return (
     <div className='w-full'>
       <div className='w-full flex items-center gap-1'>
-        <input type='checkbox' className={accent400[color as keyof typeof accent400]} onChange={(e) => {setCurIsDone(e.target.checked); UpdateTask(taskData._id, curTaskData, e.target.checked)}}></input>
+        <input type='checkbox' className={'mr-2 ease-in-out transition duration-300 hover:scale-125 ' + accent400[color as keyof typeof accent400]} onChange={(e) => {setCurIsDone(e.target.checked); UpdateTask(taskData._id, curTaskData, e.target.checked)}}></input>
         <TextareaAutosize spellCheck="false" className={" focus:outline dark:bg-slate-900 dark:placeholder:text-slate-600 text-slate-100 rounded-md lg:w-8/12 w-11/12 px-2 resize-none " + isUnderline + accent400[color as keyof typeof accent400] + caret400[color as keyof typeof caret400] + outline500[color as keyof typeof outline500] + bg600[color as keyof typeof bg600] + placeholder400[color as keyof typeof placeholder400]} placeholder='add a task...' value={curTaskData} onChange={(e) => setCurTaskData(e.target.value)} />
         <button className=' ' onClick={() => RemoveTask(taskData._id)}>{trashIcon}</button>
       </div>
